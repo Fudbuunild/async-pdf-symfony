@@ -10,7 +10,7 @@ class PurchaseConfirmationNotificationHandler
 {
     public function __invoke(PurchaseConfirmationNotification $notification)
     {
-        echo 'Creating a PDF contract note...';
+        echo 'Creating a PDF contract note...<br>';
 
         echo 'Emailing contract note to ' . $notification->getOrder()->getBuyer()->getEmail() . '<br>';
     }
