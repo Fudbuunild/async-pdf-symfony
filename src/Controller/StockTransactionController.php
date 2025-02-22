@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Message\Command\SaveOrder;
 use App\Message\PurchaseConfirmationNotification;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,7 +32,7 @@ class StockTransactionController extends AbstractController
            }
         };
 
-        $bus->dispatch(new PurchaseConfirmationNotification($order));
+        $bus->dispatch(new SaveOrder());
 
         return $this->render('stocks/example.html.twig');
     }

@@ -18,16 +18,16 @@ class PurchaseConfirmationNotificationHandler
     public function __invoke(PurchaseConfirmationNotification $notification)
     {
         $mpdf = new mPDF();
-        $content = "<h1>Contract Note for Order {$notification->getOrder()->getId()}</h1>";
+        $content = "<h1>Contract Note for Order {$notification->getOrderId()}</h1>";
         $content .= '<p>Total: <b>$1898.75</b></p>';
 
         $mpdf->writeHTML($content);
         $contractNotePdf = $mpdf->output('', 'S');
 
-        echo 'Emailing contract note to ' . $notification->getOrder()->getBuyer()->getEmail() . '<br>';
+        echo 'Emailing contract note to ' . 'vankevychpetro@gmail.com' . '<br>';
         $email = (new Email())
             ->from('vankevychpetro@gmail.com')
-            ->to($notification->getOrder()->getBuyer()->getEmail())
+            ->to('vankevychpetro@gmail.com')
             ->subject('Contract note for order ' . $notification->getOrder()->getId())
             ->text('Here is your contract note')
             ->attach($contractNotePdf, 'contract-note.pdf');
